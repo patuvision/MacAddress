@@ -1,72 +1,64 @@
-# 🔍 MAC Address Analyzer
+# MAC Address Analyzer
 
-یک ابزار ساده و آموزشی با زبان **Python** برای بررسی، اعتبارسنجی و تحلیل MAC Address.
+A simple Python tool for validating and analyzing MAC addresses.
 
-هدف این پروژه یادگیری ساختار MAC Address و درک بهتر مفاهیمی مانند **Hexadecimal، Binary، OUI، NIC و Bitwise Operations** است.
+This project was created as a learning project to better understand MAC addresses, hexadecimal and binary numbers, OUI, NIC, and bitwise operations.
 
----
+## Features
 
-## ✨ قابلیت‌ها
+* Validate MAC addresses without using Regular Expressions
+* Support `:` and `-` separators
+* Check the number of MAC address groups
+* Check the length of each group
+* Validate hexadecimal characters
+* Extract OUI
+* Extract NIC
+* Convert MAC address to Binary
+* Convert MAC address to Decimal
+* Display MAC address length
+* Detect Unicast / Multicast
+* Detect Universally / Locally Administered addresses
 
-این برنامه می‌تواند:
+## MAC Address Structure
 
-* ✅ اعتبارسنجی MAC Address بدون استفاده از Regex
-* ✅ پشتیبانی از فرمت `:` و `-`
-* ✅ بررسی تعداد گروه‌های MAC Address
-* ✅ بررسی تعداد کاراکترهای هر گروه
-* ✅ بررسی معتبر بودن کاراکترهای Hexadecimal
-* ✅ استخراج OUI
-* ✅ استخراج NIC
-* ✅ تبدیل MAC Address به Binary
-* ✅ تبدیل MAC Address به Decimal
-* ✅ نمایش تعداد بیت‌ها
-* ✅ تشخیص Unicast / Multicast
-* ✅ تشخیص Universally / Locally Administered
+A standard MAC address is 48 bits long and contains 6 groups.
 
----
-
-## 🧩 MAC Address چیست؟
-
-یک MAC Address استاندارد معمولاً **48 بیت** طول دارد و از **6 گروه** تشکیل شده است.
-
-مثال:
+Example:
 
 ```text
 A4:5E:60:12:34:56
 ```
 
-هر گروه شامل دو رقم Hexadecimal است.
+Each group contains two hexadecimal digits.
 
-هر رقم Hexadecimal برابر با 4 بیت است:
+Each hexadecimal digit represents 4 bits:
 
 ```text
 A = 1010
 4 = 0100
 ```
 
-بنابراین:
+Therefore:
 
 ```text
 A4 = 10100100
 ```
 
-هر گروه در مجموع:
+Each group contains:
 
 ```text
 2 × 4 = 8 bits
 ```
 
-و کل MAC:
+And the complete MAC address contains:
 
 ```text
 6 × 8 = 48 bits
 ```
 
----
+## OUI and NIC
 
-## 🏗️ ساختار MAC Address
-
-به صورت ساده می‌توان MAC Address را به دو قسمت تقسیم کرد:
+The MAC address can be divided into two main parts:
 
 ```text
 A4:5E:60:12:34:56
@@ -77,41 +69,33 @@ A4:5E:60:12:34:56
 
 ### OUI
 
-OUI مخفف:
+OUI stands for:
 
-```text
-Organizationally Unique Identifier
-```
+**Organizationally Unique Identifier**
 
-است.
+The OUI is the first 24 bits of the MAC address and identifies an organization or vendor address block.
 
-OUI شامل **24 بیت اول** MAC Address است.
-
-مثلاً:
+Example:
 
 ```text
 A4:5E:60
 ```
 
-این بخش معمولاً به یک سازمان یا تولیدکننده اختصاص داده می‌شود.
-
 ### NIC
 
-در این پروژه، سه بخش باقی‌مانده به عنوان بخش شناسه رابط در نظر گرفته می‌شود:
+The remaining part of the MAC address is:
 
 ```text
 12:34:56
 ```
 
-این بخش در فضای آدرس اختصاص‌یافته برای تولیدکننده، رابط‌ها را از یکدیگر متمایز می‌کند.
+It is used within the assigned address space to distinguish interfaces.
 
----
+## Binary Conversion
 
-## 🔢 تبدیل Hexadecimal به Binary
+The program converts every hexadecimal group into exactly 8 bits.
 
-برنامه هر گروه را به **8 بیت** تبدیل می‌کند.
-
-مثلاً:
+Example:
 
 ```text
 A4 = 10100100
@@ -122,158 +106,110 @@ A4 = 10100100
 56 = 01010110
 ```
 
-بنابراین:
-
-```text
-A4:5E:60:12:34:56
-```
-
-تبدیل می‌شود به:
+Result:
 
 ```text
 10100100:01011110:01100000:00010010:00110100:01010110
 ```
 
-در Python از این روش استفاده شده است:
+The program uses:
 
 ```python
 f"{value:08b}"
 ```
 
-`08b` باعث می‌شود هر مقدار دقیقاً با **8 رقم باینری** نمایش داده شود؛ حتی اگر ابتدای آن صفر باشد.
+The `08b` format ensures that every group contains exactly 8 binary digits, including leading zeros.
 
----
+## Decimal Conversion
 
-## 🧮 تبدیل به Decimal
+The complete MAC address can also be treated as a 48-bit hexadecimal value and converted into a decimal integer.
 
-کل MAC Address را می‌توان به عنوان یک مقدار Hexadecimal در نظر گرفت و به Decimal تبدیل کرد.
-
-مثلاً:
+For example:
 
 ```text
 A4:5E:60:12:34:56
 ```
 
-به صورت یک عدد 48 بیتی در نظر گرفته می‌شود:
+is treated as:
 
 ```text
 A45E60123456
 ```
 
-و سپس به Decimal تبدیل می‌شود.
+and then converted to Decimal.
 
----
+## Unicast / Multicast
 
-## 📡 Unicast و Multicast
+The first byte contains the I/G bit.
 
-یکی از بیت‌های اولین Byte در MAC Address، **I/G bit** است.
-
-مثلاً:
-
-```text
-A4
-↓
-10100100
-       ↑
-      I/G
-```
-
-این بیت مشخص می‌کند آدرس از نظر این فیلد در حالت Individual یا Group قرار دارد.
-
-برنامه این بیت را با Bitwise AND بررسی می‌کند:
+The program checks it using:
 
 ```python
 FirstByte & 1
 ```
 
-نتیجه:
+The result is:
 
 ```text
 0 → Unicast
 1 → Multicast
 ```
 
----
+## Universal / Local
 
-## 🌐 Universal و Local
+The first byte also contains the U/L bit.
 
-بیت دیگری در اولین Byte به نام **U/L bit** وجود دارد.
-
-برنامه برای بررسی آن از:
+The program checks it using:
 
 ```python
 FirstByte & 2
 ```
 
-استفاده می‌کند.
-
-نتیجه:
+The result is:
 
 ```text
 0 → Universally Administered
 1 → Locally Administered
 ```
 
----
+## MAC Address Validation
 
-## 🛡️ اعتبارسنجی MAC Address
+This project does not use Regular Expressions for validation.
 
-این پروژه برای اعتبارسنجی از **Regex استفاده نمی‌کند**.
+The program checks:
 
-برنامه موارد زیر را بررسی می‌کند:
+* Number of groups
+* Length of each group
+* Valid hexadecimal characters
+* MAC address structure
 
-### 1. تعداد گروه‌ها
-
-MAC باید 6 گروه داشته باشد:
-
-```text
-AA:BB:CC:DD:EE:FF
-```
-
-### 2. طول هر گروه
-
-هر گروه باید دقیقاً 2 کاراکتر داشته باشد:
-
-```text
-AA
-```
-
-### 3. معتبر بودن Hexadecimal
-
-کاراکترهای مجاز:
-
-```text
-0 1 2 3 4 5 6 7 8 9
-A B C D E F
-```
-
-بنابراین:
+Valid examples:
 
 ```text
 A4:5E:60:12:34:56
+A4-5E-60-12-34-56
+a4:5e:60:12:34:56
 ```
 
-معتبر است.
-
-اما:
+Invalid examples:
 
 ```text
+A4:5E:60:12:34
+A4:5E:60:12:34:567
 A4:5E:60:12:34:GG
+A4:5E:60:12:34:5
+A4:5E:60:12:34:56:78
 ```
 
-معتبر نیست.
+## Example
 
----
-
-## 🧪 مثال
-
-### Input
+Input:
 
 ```text
 A4:5E:60:12:34:56
 ```
 
-### Output
+Example output:
 
 ```text
 MAC Address    : A4:5E:60:12:34:56
@@ -286,57 +222,30 @@ Type           : Unicast
 Administration : Universally Administered
 ```
 
----
+## Technologies
 
-## 🐍 مفاهیم Python استفاده‌شده
+* Python 3
+* String manipulation
+* Functions
+* Loops
+* Conditional statements
+* Hexadecimal conversion
+* Binary conversion
+* Bitwise operations
+* Input validation
 
-در این پروژه با مفاهیم زیر تمرین شده است:
+## Future Improvements
 
-* `Functions`
-* `Strings`
-* `Lists`
-* `split()`
-* `join()`
-* `len()`
-* `for loop`
-* `if / else`
-* `int()`
-* `Hexadecimal`
-* `Binary`
-* `Bitwise AND (&)`
-* `String Validation`
+Possible future features:
 
----
+* OUI → Vendor lookup
+* IEEE OUI database support
+* Bit-by-bit visualization
+* MAC address generator
+* Command-line arguments
+* JSON output
+* More MAC address formats
 
-## 🎯 هدف پروژه
+## Purpose
 
-این پروژه بیشتر با هدف **یادگیری Python و مفاهیم شبکه** ساخته شده است.
-
-هدف اصلی این است که MAC Address را فقط به عنوان یک رشته مثل:
-
-```text
-A4:5E:60:12:34:56
-```
-
-نبینیم، بلکه آن را به عنوان یک **مقدار 48 بیتی** بررسی کنیم و ببینیم هر قسمت و هر بیت چه مفهومی دارد.
-
----
-
-## 🚀 ایده‌های توسعه در آینده
-
-قابلیت‌های احتمالی برای نسخه‌های بعدی:
-
-* 🔎 پیدا کردن Vendor از روی OUI
-* 📚 استفاده از دیتابیس رسمی IEEE OUI
-* 🔬 نمایش جزئیات بیت‌به‌بیت
-* 🎲 ساخت MAC Address تصادفی
-* 💻 اضافه کردن رابط خط فرمان
-* 📄 خروجی گرفتن به صورت JSON
-* 📊 نمایش اطلاعات به شکل جدول
-* 🔄 پشتیبانی از فرمت‌های بیشتر MAC Address
-
----
-
-## 📚 هدف آموزشی
-
-این پروژه برای تمرین و یادگیری ساخته شده و می‌تواند برای افرادی که در حال یادگیری **Python، Networking و مفاهیم پایه MAC Address** هستند مفید باشد.
+This is an educational project created to practice Python programming and understand how MAC addresses work at the bit level.

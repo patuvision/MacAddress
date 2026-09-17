@@ -1,5 +1,6 @@
 # 🔍 تحلیل‌گر MAC Address
-
+[🇬🇧 English Version](README.md)
+ 
 یک ابزار ساده و آموزشی با زبان **Python** برای اعتبارسنجی و تحلیل MAC Address.
 
 هدف این پروژه، یادگیری بهتر ساختار MAC Address و مفاهیمی مانند اعداد Hexadecimal، Binary، OUI، NIC و عملیات Bitwise است.
@@ -261,4 +262,3 @@ Administration : Universally Administered
 
 هدف اصلی این است که MAC Address را فقط به صورت یک String نبینیم، بلکه آن را به عنوان یک **مقدار 48 بیتی** بررسی کنیم و بفهمیم بخش‌ها و بیت‌های مختلف آن چه اطلاعاتی دارند.
 
-[🇬🇧 English Version](README.md)

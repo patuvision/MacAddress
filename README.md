@@ -1,5 +1,7 @@
 # MAC Address Analyzer
 
+[🇮🇷 نسخه فارسی](README-fa.md)
+
 A simple Python tool for validating and analyzing MAC addresses.
 
 This project was created as a learning project to better understand MAC addresses, hexadecimal and binary numbers, OUI, NIC, and bitwise operations.
